@@ -128,7 +128,7 @@ class Application:
 		Label(self.afp,text="Monto deseado: ").grid(row=10,column=0)
 		Entry(self.afp,textvariable=self.APV).grid(row=10,column=1,columnspan=2)
 
-		Button(self.afp,text="Calcular",command=self.Calculo_Esperado).grid(row=11,column=2)
+		Button(self.afp,text="Calcular",command=self.Calculo_Deseado).grid(row=11,column=2)
 		Button(self.afp,text="Volver",command=self.Start).grid(row=11,column=0,columnspan=2,padx=20,pady=20)
 
 	def salir(self):
@@ -168,7 +168,7 @@ class Application:
 		self.frame.destroy()
 		self.afp.destroy()
 		self.inicio=True
-		self.afp=Frame(self.window,bg='blue',fill="both")
+		self.afp=Frame(self.window,bg="#617EDE")
 		self.afp.pack()
 
 		Label(self.afp,text="Resultados").grid(row=0,column=0,columnspan=2)
@@ -182,11 +182,11 @@ class Application:
 		
 		self.Total_Deseado=self.APV.get()*12
 
-		Deposito=(self.Rentas[self.AFP.get()][self.Fondo.get()-1]*(self.Total_Deseado-self.self.Total*((1+self.Rentas[self.AFP.get()][self.Fondo.get()-1])**Tiempo)))/(((1+self.Rentas[self.AFP.get()][self.Fondo.get()-1])**Tiempo)-1)
+		Deposito=(self.Rentas[self.AFP.get()][self.Fondo.get()-1]*(self.Total_Deseado-self.Total*((1+self.Rentas[self.AFP.get()][self.Fondo.get()-1])**Tiempo)))/(((1+self.Rentas[self.AFP.get()][self.Fondo.get()-1])**Tiempo)-1)
        	
 
 		Label(self.afp,text="Tu total actual es: "+ str(self.Total)).grid(row=1,column=0,columnspan=3)
-		Label(self.afp,text="Para tener tu jubilacion esperada, debes aportar: " + str(int(Deposito/12) + " entre lo obligarorio y tu ahorro.\n Por esto tu deposito de APV debe ser: "+ str(self.Sueldo-int(Deposito/12))+" mensualmente").grid(row=2,rowspan=3,column=0,columnspan=3))
+		Label(self.afp,text="Para tener tu jubilacion esperada, debes aportar: " + str(int(Deposito/12)) + " entre lo obligarorio y tu ahorro.\n Por esto tu deposito de APV debe ser: "+ str(self.Sueldo.get()-int(Deposito/12))+" mensualmente").grid(row=2,rowspan=3,column=0,columnspan=3)
 
 
 
